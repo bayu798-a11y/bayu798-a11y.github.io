@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLBB.STORE - Jual Akun Aman & Terpercaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-body: #020617;
+            --bg-card: #0f172a;
+            --primary: #3b82f6;
+            --accent: #00f2fe;
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --nav-bg: rgba(15, 23, 42, 0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(0, 242, 254, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+            padding-top: 100px;
+        }
+
+        header.header-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            z-index: 10000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-wrapper {
+            width: 55px; 
+            height: 55px;
+            overflow: hidden;
+            border-radius: 50%;
+            background: black;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+
+        .logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+        .logo-text span { color: white; }
+
+        .desktop-nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section { padding: 40px 0 20px; }
+
+        .section-title {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: "";
+            width: 4px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 10px;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .grid-katalog, .grid-testi, .grid-sold {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        @media (min-width: 600px) {
+            .grid-katalog, .grid-testi, .grid-sold { grid-template-columns: 1fr 1fr; }
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+        }
+
+        .card-img-holder {
+            width: 100%;
+            height: 180px;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .card-img-holder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .price-tag {
+            color: var(--accent);
+            font-weight: 800;
+            font-size: 1.4rem;
+            display: block;
+            margin: 15px 0;
+        }
+
+        .btn-buy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary), #1e40af);
+            color: white;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 15px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Sold Out Styling */
+        .sold-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: #ef4444;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            z-index: 10;
+            transform: rotate(5deg);
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+        }
+
+        .grayscale {
+            filter: grayscale(1);
+            opacity: 0.6;
+        }
+
+        /* Testimoni Style */
+        .stars { color: #fbbf24; margin-bottom: 10px; font-size: 0.8rem; }
+        .testi-user { font-weight: 800; font-size: 0.9rem; margin-top: 15px; display: block; color: var(--primary); }
+
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            .logo-text { font-size: 1.1rem; }
+            .desktop-nav { gap: 8px; }
+            .nav-link { font-size: 0.7rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header-container">
+        <div class="logo-group">
+            <div class="logo-wrapper">
+                <img src="logo.png" alt="Logo MLBB STORE">
+            </div>
+            <div class="logo-text">MLBB<span>.STORE</span></div>
+        </div>
+
+        <nav class="desktop-nav">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#katalog" class="nav-link">Katalog</a>
+            <a href="#sold-out" class="nav-link">Sold</a> <a href="#testimoni" class="nav-link">Testi</a>
+            <a href="#cara-order" class="nav-link">Order</a>
+            <a href="#alamat" class="nav-link">Lokasi</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <section id="home" style="text-align: center;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px; letter-spacing: -1px;">Akun Impian</h1>
+            <p style="color: var(--text-dim); font-size: 1.1rem;">Aman, Cepat, Anti tipu tipu, dan Garansi Seumur Hidup.</p>
+        </section>
+
+        <section id="info">
+            <h2 class="section-title">Kenapa Harus Kami?</h2>
+            <div class="card" style="background: linear-gradient(to bottom right, #0f172a, #1e293b);">
+                <p style="color: var(--text-dim); line-height: 1.8;">
+                    <i class="fas fa-shield-halved" style="color: var(--accent); margin-right: 8px;"></i> Keamanan adalah prioritas kami. Semua akun sudah melalui pengecekan data 100% aman.
+                </p>
+            </div>
+        </section>
+
+        <section id="katalog">
+            <h2 class="section-title">Ready Stock Akun</h2>
+            <div class="grid-katalog">
+                <div class="card">
+                    <div class="card-img-holder">
+                        <img src="1.png" alt="Akun 1">
+                    </div>
+                    <h3 style="font-size: 1.1rem;">Mythic Glory</h3>
+                    <ul style="list-style: none; font-size: 0.8rem; color: var(--text-dim); margin-top: 8px;">
+                        <li>• jubah lumayan banyak</li>
+                        <li>• Emblem sudah penuh</li>
+                    </ul>
+                    <span class="price-tag">Rp 50.000</span>
+                    <a href="https://wa.me/6289520147613" class="btn-buy">
+                        <i class="fab fa-whatsapp"></i> BELI SEKARANG
+                    </a>
+                 </div>
+        <section id="katalog">
+            <h2 class="section-title">Ready Stock Akun</h2>
+            <div class="grid-katalog">
+                <div class="card">
+                    <div class="card-img-holder">
+                        <img src="2.png" alt="Akun 1">
+                    </div>
+                    <h3 style="font-size: 1.1rem;">Mythic Glory - KOF Gusion</h3>
+                    <ul style="list-style: none; font-size: 0.8rem; color: var(--text-dim); margin-top: 8px;">
+                        <li>• jubah convenat</li>
+                        <li>• Emblem sudah penuh</li>
+                    </ul>
+                    <span class="price-tag">Rp 150.000</span>
+                    <a href="https://wa.me/6289520147613" class="btn-buy">
+                        <i class="fab fa-whatsapp"></i> BELI SEKARANG
+                    </a>
+                 </div>
+                <div class="card">
+                    <div class="card-img-holder">
+                        <img src="3.png" alt="Akun 2">
+                    </div>
+                    <h3 style="font-size: 1.1rem;">Mantan Global gusion </h3>
+                    <ul style="list-style: none; font-size: 0.8rem; color: var(--text-dim); margin-top: 8px;">
+                        <li>• Jubah gusion kof</li>
+                        <li>• Login Moonton Sepaket</li>
+                    </ul>
+                    <span class="price-tag">Rp 200.000</span>
+                    <a href="https://wa.me/6289520147613" class="btn-buy">
+                        <i class="fab fa-whatsapp"></i> BELI SEKARANG
+                    </a>
+                </div>
+            </div>
+        </section>
+                <div class="card">
+                    <div class="card-img-holder">
+                        <img src="4.png" alt="Akun 2">
+                    </div>
+                    <h3 style="font-size: 1.1rem;">Mantan global gs </h3>
+                    <ul style="list-style: none; font-size: 0.8rem; color: var(--text-dim); margin-top: 8px;">
+                        <li>• Hayabusa 11.11</li>
+                        <li>• Benedetta Soul Vessel</li>
+                    </ul>
+                    <span class="price-tag">Rp 250.000</span>
+                    <a href="https://wa.me/6289520147613" class="btn-buy">
+                        <i class="fab fa-whatsapp"></i> BELI SEKARANG
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="sold-out">
+            <h2 class="section-title">Sold Out (Terjual)</h2>
+            <div class="grid-sold">
+                <div class="card grayscale">
+                    <div class="sold-badge">SOLD OUT</div>
+                    <div class="card-img-holder">
+                        <img src="5.png" alt="Akun Terjual">
+                    </div>
+                    <h3 style="font-size: 1.1rem;">Jubah Gs tinggal 1 yaitu KOF  COA sisa  1,5k</h3>
+                    <p style="color: var(--text-dim); font-size: 0.8rem; margin-top: 8px;">Sudah laku ke tanggul manggisan</p>
+                    <span class="price-tag" style="color: #64748b;">LAKU TERJUAL Rp400.000</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimoni">
+            <h2 class="section-title">Testimoni Pembeli</h2>
+            <div class="grid-testi">
+                <div class="card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p style="color: var(--text-dim); font-size: 0.85rem; font-style: italic; line-height: 1.6;">
+                        "Mantap banget belanja di sini! Admin responnya cepat, proses pindah data cuma 10 menit. Akun aman anti diambip kembali. Mantap pokoknya!"
+                    </p>
+                    <span class="testi-user">@Rizky_MLBB</span>
+                </div>
+                <div class="card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p style="color: var(--text-dim); font-size: 0.85rem; font-style: italic; line-height: 1.6;">
+                        "Awalnya ragu, tapi ternyata beneran amanah. Akun sesuai yang ada di gambar, dapet bonus tips pengamanan juga. Terbaik lah!"
+                    </p>
+                    <span class="testi-user">@GusionMain22</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="cara-order">
+            <h2 class="section-title">Cara Order</h2>
+            <div class="card">
+                <div style="color: var(--text-dim); font-size: 0.9rem; line-height: 2;">
+                    1. Pilih akun yang kamu suka di katalog.<br>
+                    2. Klik tombol <strong>Beli Sekarang</strong> untuk terhubung ke WhatsApp.<br>
+                    3. Lakukan pembayaran via Dana/Gopay/Transfer Bank.<br>
+                    4. Admin akan memberikan data login & memandu pengamanan akun.
+                </div>
+            </div>
+        </section>
+
+        <section id="alamat">
+            <h2 class="section-title">Lokasi Toko</h2>
+            <div class="card" style="display: flex; gap: 15px; align-items: center;">
+                <i class="fas fa-map-location-dot" style="font-size: 2rem; color: var(--primary);"></i>
+                <div>
+                    <h4 style="margin-bottom: 5px;">Store Offline</h4>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">
+                        Jalan letjen Sutoyo 2 RT 16 RW 2,<br>
+                        Kota Jember,Jawa timur
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer style="text-align: center; padding: 40px; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px;">
+        <p>&copy; 2026 MLBB.STORE - Toko Game Terpercaya Indonesia</p>
+        <p style="font-size: 0.8rem; margin-top: 5px;">Alamat:Jalan Letjen Sutoyo 2 RT 16 RW 2, soklatan Gambirono, Bangsalsari, Jember, Jawa, Timur, Indonesia</p>
+    </footer>
+
+    <script>
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
